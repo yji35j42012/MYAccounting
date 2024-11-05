@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #060e23;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (pointer: fine) and (-webkit-max-device-pixel-ratio: 2), (pointer: fine) and (max-resolution: 2dppx), screen and (pointer: fine) and (-webkit-max-device-pixel-ratio: 2), (-moz-touch-enabled: 0), screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /* scroll bar style setting */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #B9BDC5;
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+  }
+}
+.wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.normal_msgl {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.normal_msgl:before {
+  content: attr(data-msg);
+}
+
+.content {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.accounting_title {
+  display: flex;
+  align-items: center;
+  justify-content: none;
+  height: 40px;
+  padding: 4px 8px;
+  background-color: #1E2841;
+  color: #ffffff;
+  font-size: 14px;
+}
+.accounting_group {
+  color: #ffffff;
+}
+.accounting_group_title {
+  display: flex;
+  align-items: center;
+  justify-content: none;
+  width: 100%;
+  height: 40px;
+  background-color: #34446e;
+}
+.accounting_group_list {
+  display: flex;
+  align-items: center;
+  justify-content: none;
+  height: 40px;
+}
+.accounting_group_detail {
+  display: flex;
+  align-items: center;
+  justify-content: none;
+  height: 40px;
+}
+.accounting_span1 {
+  width: 90px;
+  padding: 0 4px;
+}
+.accounting_span3 {
+  flex: none;
+  width: 80px;
+  padding: 0 4px;
+  text-align: center;
+}
+.accounting_span2 {
+  flex: 1 1 auto;
+  padding: 0 4px;
+}
+
+.normal_tb {
+  width: 100%;
+  table-layout: fixed;
+  color: #ffffff;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+.accounting_product {
+  text-align: left;
+}
+
+.accounting_amount,
+.accounting_mode {
+  width: 75px;
+  text-align: center;
+}
+
+.icon_home {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.icon_menu {
+  display: block;
+  width: 22px;
+  height: 20px;
+}
+.icon_msg {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #6700f4;
+  fill: #fff;
+}
+.icon_msg svg {
+  width: 20px;
+  height: 20px;
+}/*# sourceMappingURL=all.css.map */
