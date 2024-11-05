@@ -11,7 +11,9 @@ body {
     height: 100%;
     background-color: map-get($dark_color , bodybg);
 }
-
+body{
+	padding-bottom: env(safe-area-inset-bottom);
+}
 a {
     text-decoration: none;
 }

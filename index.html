@@ -12,10 +12,11 @@
 
 <body>
 	<div id="app" class="wrap">
+		<div class="header"></div>
 		<div class="content">
 			<div class="accounting">
 				<template v-for="(outsideItem,index) in showAccounting.objList" :key="index">
-					<div class="accounting_title on" @click="accounting_title('0')">{{index}}</div>
+					<div class="accounting_title on" @click="accounting_title(index)">{{index}}</div>
 
 					<div class="accounting_group">
 						<div class="accounting_group_title">
@@ -94,7 +95,6 @@
 					}
 					res.data.forEach(element => {
 						if (element[0]!=='') {
-							console.log('element', element);
 							let dateTitle=element[1].split('/')[0]+"/"+element[1].split('/')[1]
 							if (objData.dateItem.indexOf(dateTitle)==-1) {
 								objData.dateItem.push(dateTitle)
@@ -136,7 +136,6 @@
 				showAccounting() {
 					rShow=this.accounting_data
 					if (!rShow) return
-					console.log('rShow', rShow);
 					return rShow
 				}
 			},
@@ -144,7 +143,11 @@
 				// 'header-component': Vue.defineAsyncComponent(() => loadModule('./components/HeaderComponent.vue', options)),
 				// 'right-panel': Vue.defineAsyncComponent(() => loadModule('./components/RightPanel.vue', options)),
 			},
-			methods: {}
+			methods: {
+				accounting_title(index) {
+					console.log('index', index);
+				}
+			}
 		});
 		app.use(router)
 		app.mount('#app');

@@ -12,6 +12,10 @@ body {
   background-color: #060e23;
 }
 
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 a {
   text-decoration: none;
 }
@@ -32,8 +36,19 @@ a {
   }
 }
 .wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+}
+
+.header {
+  flex: none;
+  width: 100%;
+  height: 50px;
+  background-color: #0c2565;
 }
 
 .normal_msgl {
@@ -46,6 +61,8 @@ a {
 }
 
 .content {
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
@@ -58,12 +75,15 @@ a {
   justify-content: none;
   height: 40px;
   padding: 4px 8px;
-  background-color: #1E2841;
+  background-color: #34446e;
   color: #ffffff;
   font-size: 14px;
 }
 .accounting_group {
   color: #ffffff;
+}
+.accounting_group + .accounting_title {
+  margin-top: 8px;
 }
 .accounting_group_title {
   display: flex;
@@ -71,7 +91,7 @@ a {
   justify-content: none;
   width: 100%;
   height: 40px;
-  background-color: #34446e;
+  background-color: #1E2841;
 }
 .accounting_group_list {
   display: flex;
