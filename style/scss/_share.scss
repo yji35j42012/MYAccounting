@@ -59,7 +59,7 @@
 		// .accounting_group_list
 		&_list {
 			@include d_f(flex, none, center);
-			height: 40px;
+			min-height: 40px;
 		}
 
 		// .accounting_group_detail
@@ -72,21 +72,22 @@
 	// .accounting_span1
 	&_span1 {
 		width: 90px;
-		padding: 0 4px;
+		padding: 4px;
 	}
 
 	// .accounting_span3
 	&_span3 {
 		flex: none;
 		width: 80px;
-		padding: 0 4px;
+		padding: 4px;
 		text-align: center;
 	}
 
 	// .accounting_span2
 	&_span2 {
 		flex: 1 1 auto;
-		padding: 0 4px;
+		padding: 4px;
+		text-align: left;
 	}
 }
 

@@ -97,7 +97,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: none;
-  height: 40px;
+  min-height: 40px;
 }
 .accounting_group_detail {
   display: flex;
@@ -107,17 +107,18 @@ a {
 }
 .accounting_span1 {
   width: 90px;
-  padding: 0 4px;
+  padding: 4px;
 }
 .accounting_span3 {
   flex: none;
   width: 80px;
-  padding: 0 4px;
+  padding: 4px;
   text-align: center;
 }
 .accounting_span2 {
   flex: 1 1 auto;
-  padding: 0 4px;
+  padding: 4px;
+  text-align: left;
 }
 
 .normal_tb {
