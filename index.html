@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Alex</title>
+	<link rel="stylesheet" href="./style/css/all.css">
+
+</head>
+
+<body>
+	<div id="app" class="wrap">
+		<div class="content">
+			<div class="accounting">
+				<template v-for="(outsideItem,index) in showAccounting.objList" :key="index">
+					<div class="accounting_title on" @click="accounting_title('0')">{{index}}</div>
+
+					<div class="accounting_group">
+						<div class="accounting_group_title">
+							<div class="accounting_span1">消費日期</div>
+							<div class="accounting_span2">消費項目</div>
+							<div class="accounting_span3">消費金額</div>
+						</div>
+						<template v-for="(insideItem,index) in outsideItem" :key="index">
+							<div class="accounting_group_list">
+								<div class="accounting_span1">{{insideItem.accounting_date}}</div>
+								<div class="accounting_span2">{{insideItem.accounting_product}}</div>
+								<div class="accounting_span3">{{insideItem.accounting_amount}}</div>
+							</div>
+						</template>
+					</div>
+				</template>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script src="./js/libs/axios.js"></script>
+	<script src="./js/libs/vue.global_3_4_38.js"></script>
+	<script src="./js/libs/vue3-sfc-loader.js"></script>
+	<script src="./js/libs/vue-router_4_3_2.js"></script>
+	<script src="./js/icon_all.js"></script>
+	<script src="./js/mixinJs.js"></script>
+
+	<script>
+		const options={
+			moduleCache: {
+				vue: Vue
+			},
+			async getFile(url) {
+				const res=await fetch(url);
+				if (!res.ok)
+					throw Object.assign(new Error(res.statusText+' '+url), { res });
+				return {
+					getContentData: asBinary => asBinary? res.arrayBuffer():res.text(),
+				}
+			},
+			addStyle(textContent) {
+				const style=Object.assign(document.createElement('style'), { textContent });
+				const ref=document.head.getElementsByTagName('style')[0]||null;
+				document.head.insertBefore(style, ref);
+			},
+		}
+		const { loadModule }=window['vue3-sfc-loader'];
+		const routes=[
+			{
+				path: '/',
+				component: () => loadModule('./page/home.vue', options),
+			},
+		];
+		const router=VueRouter.createRouter({
+			history: VueRouter.createWebHistory('#'),
+			routes
+		})
+		const app=Vue.createApp({
+			// mixins: [url],
+			data() {
+				return {
+					nowPage: "",
+					title: 'alex',
+					accounting_data: []
+					// icon_all: icon_all,
+				}
+			},
+			mounted() {
+				var get_url=url+"?func=getAccounting";
+				axios.get(get_url).then(res => {
+					let objData={
+						dateItem: [],
+						objList: {},
+					}
+					res.data.forEach(element => {
+						if (element[0]!=='') {
+							console.log('element', element);
+							let dateTitle=element[1].split('/')[0]+"/"+element[1].split('/')[1]
+							if (objData.dateItem.indexOf(dateTitle)==-1) {
+								objData.dateItem.push(dateTitle)
+								objData.objList[dateTitle]=[{
+									accounting_date: element[1],
+									accounting_product: element[2],
+									accounting_amount: element[3],
+									accounting_mode: element[4],
+								}]
+							} else {
+								objData.objList[dateTitle].push({
+									accounting_date: element[1],
+									accounting_product: element[2],
+									accounting_amount: element[3],
+									accounting_mode: element[4],
+								});
+							}
+						}
+					});
+					this.accounting_data=objData
+				});
+
+			},
+			watch: {
+				$route(to, from) {
+					// store.dispatch("SET_LOADING", true);
+					var now=this.$route.path;
+					if (now=="/"||now=='home') {
+						this.nowPage="home";
+						// store.dispatch("PAGE", "home");
+					} else {
+						// store.dispatch("SET_LOADING", true);
+						this.nowPage=now.split("/")[1];
+						// store.dispatch("PAGE", now.split("/")[1]);
+					}
+				},
+			},
+			computed: {
+				showAccounting() {
+					rShow=this.accounting_data
+					if (!rShow) return
+					console.log('rShow', rShow);
+					return rShow
+				}
+			},
+			components: {
+				// 'header-component': Vue.defineAsyncComponent(() => loadModule('./components/HeaderComponent.vue', options)),
+				// 'right-panel': Vue.defineAsyncComponent(() => loadModule('./components/RightPanel.vue', options)),
+			},
+			methods: {}
+		});
+		app.use(router)
+		app.mount('#app');
+	</script>
+
+</body>
+
+</html>
