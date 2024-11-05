@@ -12,11 +12,13 @@
 
 <body>
 	<div id="app" class="wrap">
-		<div class="header"></div>
+		<div class="header">
+			<button class="normal_btn" @click="accountingEdit('add')">新增</button>
+		</div>
 		<div class="content">
 			<div class="accounting">
 				<template v-for="(outsideItem,index) in showAccounting.objList" :key="index">
-					<div class="accounting_title on" @click="accounting_title(index)">{{index}}</div>
+					<div class="accountingTitle on" @click="accountingTitle(index)">{{index}}</div>
 
 					<div class="accounting_group">
 						<div class="accounting_group_title">
@@ -36,6 +38,24 @@
 			</div>
 		</div>
 
+
+
+		<div class="alert" v-if="accounting_edit.isShow">
+			<div class="alert_box">
+				<div class="alert_head">訊息</div>
+				<div class="alert_body">
+					<input type="text" class="alert_inp" placeholder="消費日期">
+					<input type="text" class="alert_inp" placeholder="消費項目">
+					<input type="text" class="alert_inp" placeholder="消費金額">
+					<input type="text" class="alert_inp" placeholder="消費方式">
+
+					<div class="alert_funcbox">
+						<button class="normal_btn" @click="alertClose('accounting')">取消</button>
+						<button class="normal_btn" @click="accountingSave">儲存</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
@@ -82,8 +102,10 @@
 				return {
 					nowPage: "",
 					title: 'alex',
-					accounting_data: []
-					// icon_all: icon_all,
+					accounting_data: [],
+					accounting_edit: {
+						isShow: false
+					}
 				}
 			},
 			mounted() {
@@ -144,8 +166,25 @@
 				// 'right-panel': Vue.defineAsyncComponent(() => loadModule('./components/RightPanel.vue', options)),
 			},
 			methods: {
-				accounting_title(index) {
+				accountingTitle(index) {
 					console.log('index', index);
+				},
+				accountingEdit(s) {
+					if (s=='add') {
+						this.accounting_edit.isShow=true
+					}
+				},
+				accountingSave() {
+
+				},
+				alertClose(s) {
+					switch (s) {
+						case 'accounting':
+							this.accounting_edit.isShow=false
+							break;
+
+
+					}
 				}
 			}
 		});
