@@ -205,6 +205,9 @@ select {
 .accounting_title:not(.on) + .accounting_group {
   display: none;
 }
+.accounting_title_total {
+  margin-left: auto;
+}
 .accounting_group {
   color: #ffffff;
 }

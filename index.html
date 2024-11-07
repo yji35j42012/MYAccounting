@@ -21,6 +21,7 @@
 					<div class="accounting_title on" @click="accountingTitle(outsideItem.id)"
 						:ref="'title_'+outsideItem.id">
 						{{index}}
+						<span class="accounting_title_total">{{outsideItem.totalAmount}}</span>
 					</div>
 					<div class="accounting_group">
 						<div class="accounting_group_title">
@@ -193,6 +194,7 @@
 								objData.dateItem.push(dateTitle)
 								objData.objList[dateTitle]={
 									id: index,
+									totalAmount: element[3],
 									lists: [{
 										accounting_id: element[0],
 										accounting_date: element[1],
@@ -202,6 +204,7 @@
 									}]
 								}
 							} else {
+								objData.objList[dateTitle].totalAmount=objData.objList[dateTitle].totalAmount+element[3]
 								objData.objList[dateTitle].lists.push({
 									accounting_id: element[0],
 									accounting_date: element[1],
