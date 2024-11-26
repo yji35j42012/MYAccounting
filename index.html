@@ -40,7 +40,6 @@
 				</template>
 			</div>
 		</div>
-
 		<div :class="['alert',accounting_edit.edit_state]" v-if="accounting_edit.isShow">
 			<div class="alert_box">
 				<div class="alert_head">訊息</div>
@@ -111,10 +110,10 @@
 						isShow: false,
 						edit_state: '',
 						edit_id: "",
-						edit_date: "2024/11/6",
-						edit_product: "test項目",
-						edit_amount: "test金額",
-						edit_mode: "現金",
+						edit_date: "",
+						edit_product: "",
+						edit_amount: "",
+						edit_mode: "",
 					}
 				}
 			},
@@ -223,9 +222,9 @@
 					} else {
 						this.$refs['title_'+index][0].classList.add("on");
 					}
-
 				},
 				accountingEdit() {
+					this.accounting_edit.edit_date=this.getDate();
 					this.accounting_edit.edit_state='showAdd';
 					this.accounting_edit.isShow=true;
 				},
@@ -258,7 +257,15 @@
 							this.accounting_edit.isShow=false;
 							break;
 					}
+				},
+				getDate() {
+					let objectDate=new Date();
+					let day=objectDate.getDate();
+					let month=objectDate.getMonth()+1;
+					let year=objectDate.getFullYear();
+					return year+"/"+month+"/"+day;
 				}
+
 			}
 		});
 		app.use(router)
