@@ -96,6 +96,10 @@ select {
   background-color: #0c2565;
 }
 
+.funcBox {
+  padding: 4px;
+}
+
 .normal_msgl {
   display: flex;
   align-items: stretch;
