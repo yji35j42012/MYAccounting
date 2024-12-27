@@ -11,7 +11,13 @@
 	width: 100%;
 	height: 50px;
 	padding: 4px;
-	background-color: #0c2565;
+	background-color: #1d1d1d;
+	color: #fff;
+	border-bottom: 2px solid #323232;
+
+	a+a {
+		margin-left: 20px;
+	}
 }
 
 .funcBox {
@@ -212,4 +218,28 @@ td {
 .accounting_mode {
 	width: 75px;
 	text-align: center;
+}
+
+.news {
+	padding: 15px;
+	color: #fff;
+
+	// .news_item
+	&_item {
+		padding: 16px 0;
+		&+&{
+			border-top: 2px solid #323232;
+		}
+	}
+
+	// .news_pic
+	&_pic {
+		overflow: hidden;
+		margin-bottom: 16px;
+		border-radius: 8px;
+
+		img {
+			border-radius: 8px;
+		}
+	}
 }
