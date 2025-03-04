@@ -227,7 +227,8 @@ td {
 	// .news_item
 	&_item {
 		padding: 16px 0;
-		&+&{
+
+		&+& {
 			border-top: 2px solid #323232;
 		}
 	}

@@ -1,6 +1,10 @@
 const routes=[
 	{
 		path: '/',
+		component: () => loadModule('./page/baby.vue', options),
+	},
+	{
+		path: '/acc',
 		component: () => loadModule('./page/accounting.vue', options),
 	},
 	{
